@@ -1,12 +1,12 @@
 (function() {
 
-console.log('jsq.js LOADED');
+console.log('queue.js LOADED');
 
 // Backup the existing queue of functions.
-var queue = jsq.cmd;
+var queue = queue.cmd;
 
 // Replace the push function with one that executes the function passed to it.
-jsq.cmd.push = function () {
+queue.cmd.push = function () {
   for (var i = 0; i < arguments.length; i++) {
     try {
       if (typeof arguments[i] === "function") {
@@ -24,6 +24,6 @@ jsq.cmd.push = function () {
 
 // Execute all the queued functions
 // apply() turns the array into individual arguments
-jsq.cmd.push.apply(jsq.cmd, queue);
+queue.cmd.push.apply(jsq.cmd, queue);
 
 })(this);
